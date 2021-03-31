@@ -15,4 +15,5 @@ chmod +x coursier
     -o almond
 ./almond --install
 
-
+rm almond
+rm coursier

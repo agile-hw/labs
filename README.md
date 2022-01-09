@@ -1,5 +1,5 @@
 # labs
-Labs for the Agile Hardware Design course in Jupyter Notebooks. The binder link is available here: https://mybinder.org/v2/gh/agile-hw/labs/HEAD
+Labs for the Agile Hardware Design course in Jupyter Notebooks. The binder link is available here: https://mybinder.org/v2/gh/agile-hw/labs/HEAD?urlpath=tree
 
 ### Local Installation
 - Binder will discard any work after 10 minutes of idle time.

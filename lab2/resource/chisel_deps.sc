@@ -9,7 +9,6 @@ import $ivy.`edu.berkeley.cs::firrtl-diagrammer:1.6.0`
 
 import $ivy.`org.scalatest::scalatest:3.2.15`
 
-
 def removeAllComments(verStr: String, delim: String = " // @"): String = {
     val lines = verStr.split('\n')
     def dropInfo(s: String): String = {
@@ -24,15 +23,26 @@ def getVerilog(dut: => chisel3.RawModule): String = {
   val arguments = Array("--emission-options",
                         "disableMemRandomization,disableRegisterRandomization",
                         "--info-mode", "ignore")
-  removeAllComments((new chisel3.stage.ChiselStage).emitVerilog(dut, arguments))
+	try {
+		removeAllComments((new chisel3.stage.ChiselStage).emitVerilog(dut, arguments))
+	} catch {
+		case e: Exception => s"An exception occurred: ${e.getMessage}"
+	}
 }
+
+// Convenience function since users typically do println(getVerilog()) anyways
+def printVerilog(dut: => chisel3.RawModule): Unit = println(getVerilog(dut))
 
 // Convenience function to invoke Chisel and grab emitted FIRRTL.
 def getFirrtl(dut: => chisel3.RawModule): String = {
   val arguments = Array("--emission-options",
                         "disableMemRandomization,disableRegisterRandomization",
                         "--info-mode", "ignore")
-  removeAllComments((new chisel3.stage.ChiselStage).emitFirrtl(dut, arguments), " @")
+	try {
+		removeAllComments((new chisel3.stage.ChiselStage).emitFirrtl(dut, arguments), " @")
+	} catch {
+		case e: Exception => s"An exception occurred: ${e.getMessage}"
+	}
 }
 
 // Pretty prints the given firrtl AST
@@ -130,4 +140,3 @@ def visualizeHierarchy(gen: () => chisel3.RawModule): Unit = {
     val (moduleView, instanceView) = generateVisualizations(gen)
     html(instanceView)
 }
-

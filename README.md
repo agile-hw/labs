@@ -8,6 +8,7 @@ Labs for the Agile Hardware Design course in Jupyter Notebooks. The binder link 
 - Activate the environment via `source chisel_nb_env/bin/activate`.
 - Start Jupyter Notebook via `jupyter notebook` then navigate to the provided url in your browser.
 - Use the file browser to navigate to the lab.
+- Lab 6 requires the `z3` SMT solver to be installed and visible on `PATH`. `z3` can be installed using your system package manager or from the z3 releases page.
 
 ### Acknowledgements
 `resource/chisel_deps.sc` and `binder` configs are borrowed from the Chisel bootcamp: https://github.com/freechipsproject/chisel-bootcamp
